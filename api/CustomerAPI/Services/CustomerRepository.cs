@@ -34,12 +34,7 @@ namespace CustomerAPI.Services
             customer.Address.AddressId = Guid.NewGuid();
 
             await _context.Customers.AddAsync(customer);
-            var result = await _context.SaveChanges() > 0;
-
-            if(result)
-            {
-                _logger.LogInformation("Customer added successfully");            
-            }
+            _context.SaveChanges();
 
             _logger.LogInformation("Error adding Customer");
         }
@@ -47,11 +42,7 @@ namespace CustomerAPI.Services
         public async void DeleteCustomer(Customer customer)
         {
             _context.Customers.Remove(customer);
-            var result = await _context.SaveChangesAsync() > 0;
-            if(result)
-            {
-                _logger.LogInformation("Customer deleted successfully");
-            }
+            _context.SaveChanges();
 
             _logger.LogInformation("Error deleting Customer");
 
