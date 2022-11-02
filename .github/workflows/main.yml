@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       directory: api/CustomerAPI
-      name: majnor
+      name: vlabrd
       
     steps:
     - uses: actions/checkout@main
