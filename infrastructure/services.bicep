@@ -49,8 +49,8 @@ resource la 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
 
 // Container Apps Environment
 resource cae 'Microsoft.App/managedEnvironments@2022-03-01' = {
-  name: 'cae-${name}'
-  location: location
+  name: 'cae-${name}2'
+  location: 'norwayeast'
   properties: {
     appLogsConfiguration: {
       destination: 'log-analytics'

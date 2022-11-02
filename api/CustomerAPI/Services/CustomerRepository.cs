@@ -47,7 +47,7 @@ namespace CustomerAPI.Services
         public async void DeleteCustomer(Customer customer)
         {
             _context.Customers.Remove(customer);
-            var result = await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync() > 0;
             if(result)
             {
                 _logger.LogInformation("Customer deleted successfully");
