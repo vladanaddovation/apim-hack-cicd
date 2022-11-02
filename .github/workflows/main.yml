@@ -27,3 +27,11 @@ jobs:
         azcliversion: latest
         inlineScript: |
           az acr build --registry acr${{ env.name }}.azurecr.io --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
+
+    - name: Use dotnet tools to build and generate swagger
+      run: |
+        dotnet tool restore --tool-manifest .config/dotnet-tools.json
+        dotnet restore 
+        dotnet build
+        dotnet swagger tofile --output $GITHUB_WORKSPACE/api/CustomerAPI/swagger-output/swagger.json $GITHUB_WORKSPACE/api/CustomerAPI/bin/Debug/net6.0/CustomerAPI.dll v1
+      working-directory: ${{ env.directory }}
