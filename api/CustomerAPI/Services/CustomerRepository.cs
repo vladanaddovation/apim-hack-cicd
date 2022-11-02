@@ -34,16 +34,27 @@ namespace CustomerAPI.Services
             customer.Address.AddressId = Guid.NewGuid();
 
             await _context.Customers.AddAsync(customer);
-            _context.SaveChanges();
+            var result = await _context.SaveChanges() > 0;
 
-            _logger.LogInformation("Customer added successfully");
+            if(result)
+            {
+                _logger.LogInformation("Customer added successfully");            
+            }
+
+            _logger.LogInformation("Error adding Customer");
         }
 
-        public void DeleteCustomer(Customer customer)
+        public async void DeleteCustomer(Customer customer)
         {
             _context.Customers.Remove(customer);
-            _context.SaveChanges();
-            _logger.LogInformation("Customer deleted successfully");
+            var result = await _context.SaveChangesAsync();
+            if(result)
+            {
+                _logger.LogInformation("Customer deleted successfully");
+            }
+
+            _logger.LogInformation("Error deleting Customer");
+
         }
 
         public async Task<Customer> GetCustomer(Guid customerId)
