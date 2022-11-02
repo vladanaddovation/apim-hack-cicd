@@ -354,5 +354,5 @@ MigrationBackup/
 
 api/CustomerAPI/appsettings.Development.json
 
-infrastructure/swapi.bicep
+#infrastructure/swapi.bicep
 test.http
